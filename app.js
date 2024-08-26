@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var fileUpload = require('express-fileupload');
+var cors = require('cors');
 
 require('dotenv').config();
 
@@ -12,6 +14,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/admin/login')
 var adminRouter = require('./routes/admin/novedades');
+var apiRouter = require('./routes/admin/api');
 
 var app = express();
 
@@ -45,13 +48,18 @@ secured = async (req, res, next) => {
   }
 }
 
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: '/tmp'
+}));
+
 // app.use('/admin/novedades',secured, adminNovedadesRouter);  SI AGREGO ESTA LÍNEA LA APP EXPLOTA
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin/login' , loginRouter);
-app.use('/admin/novedades', adminRouter);
-
+app.use('/admin/novedades', secured, adminRouter);
+app.use('/api', cors(), apiRouter)
 
 app.get('/', function (req, res) {
   var conocido = Boolean(req.session.nombre);
