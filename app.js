@@ -6,6 +6,14 @@ var logger = require('morgan');
 var fileUpload = require('express-fileupload');
 var cors = require('cors');
 
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+    cloud_name: 'dcftrqwqt',
+    api_key: '945565938629946',
+    api_secret: 'fd7aVs0pf4tQ0lgHkpKtExkAW_0'
+});
+
 require('dotenv').config();
 
 var session = require('express-session');
