@@ -69,22 +69,22 @@ app.use('/admin/login' , loginRouter);
 app.use('/admin/novedades', secured, adminRouter);
 app.use('/api', cors(), apiRouter)
 
-app.get('/', function (req, res) {
-  var conocido = Boolean(req.session.nombre);
+// app.get('/', function (req, res) {
+//   var conocido = Boolean(req.session.nombre);
 
-  res.render('index', {
-    title: 'Sesión',
-    conocido: conocido,
-    nombre: req.session.nombre
-  });
-});
+//   res.render('index', {
+//     title: 'Sesión',
+//     conocido: conocido,
+//     nombre: req.session.nombre
+//   });
+// });
 
-app.post('ingresar', function (req, res) {
-  if (req.body.nombre) {
-    req.session.nombre = req.body.nombre
-  }
-  res.redirect('/');
-});
+// app.post('ingresar', function (req, res) {
+//   if (req.body.nombre) {
+//     req.session.nombre = req.body.nombre
+//   }
+//   res.redirect('/');
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
