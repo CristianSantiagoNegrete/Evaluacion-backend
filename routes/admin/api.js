@@ -32,7 +32,7 @@ router.post('/contacto', async (req, res) => {
     const mail = {
         to: 'csantiagonegrete@hotmail.com.ar',
         subject: 'Contacto web',
-        html: `${req.body.nombre} se contactó a través de la web y quiere más información a este correco: ${req.body.email} <br> Además, hizo el siguiente comentario: ${req.body.comentario}<br> Su tel es: ${req.body.telefono}`
+        html: `${req.body.nombre} se contactó a través de la web y quiere más información a este correo: ${req.body.email} <br> Además, hizo el siguiente comentario: ${req.body.comentario}<br> Su teléfono de contacto es es: ${req.body.telefono}`
     }
 
     const transport = nodemailer.createTransport({

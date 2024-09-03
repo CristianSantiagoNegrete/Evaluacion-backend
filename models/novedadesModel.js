@@ -1,9 +1,19 @@
+var router = require('../routes/admin/novedades');
 var pool = require('./bd');
 
 async function getNovedades() {
-    var query = 'select * from novedades order by id desc';
-    var rows = await pool.query(query);
-    return rows;   
+    try {
+        const query = 'select * from novedades order by id desc';
+        const rows = await pool.query(query);
+        console.log(rows);
+        return rows;
+    } catch (error) {
+        console.error('Error al obtener novedades:', error)
+        throw error;
+    }
+    // var query = 'select * from novedades order by id desc';
+    // var rows = await pool.query(query);
+    // return rows;   
 }
 
 async function insertNovedad (obj) {
@@ -25,9 +35,18 @@ async function deleteNovedadesById(id) {
 }
 
 async function getNovedadById(id) {
-    var query = 'select * from novedades where id = ?';
-    var rows = await pool.query(query, [id]);
-    return rows[0];
+    try {
+        const query = 'select * from novedades where id = ?';
+        const rows = await pool.query(query, [id]);
+        console.log(rows);
+        return rows[0]
+    } catch (error) {
+        console.error('Error al obtener la novedad:', error);
+        throw error;
+    }
+    // var query = 'select * from novedades where id = ?';
+    // var rows = await pool.query(query, [id]);
+    // return rows[0];
 }
 
 async function modificarNovedadById(obj, id) {
